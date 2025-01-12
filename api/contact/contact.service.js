@@ -30,7 +30,7 @@ function create(contact) {
 
 function update(contact_id, updatedContact) {
   return knex("contacts")
-    .where({ contact_id })
+    .where({id: contact_id })
     .update(updatedContact, "*")
     .then((updatedRecords) => updatedRecords[0]);
 }
@@ -38,6 +38,16 @@ function update(contact_id, updatedContact) {
 function destroy(contact_id) {
   return knex("contacts").where({ contact_id }).del();
 }
+
+// function destroy(contact_id) {
+//   return knex("contacts")
+//     .where({ id: contact_id })  
+//     .del()
+//     .catch((err) => {
+//       console.error("Error in destroy query:", err);
+//       throw err;
+//     });
+// }
 
 
 
