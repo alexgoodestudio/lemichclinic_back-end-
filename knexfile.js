@@ -17,9 +17,9 @@ module.exports = {
   staging: {
     client: 'postgresql',
     connection: {
-      database: 'my_db',
-      user: 'username',
-      password: 'password',
+      database: process.env.STAGING_DB_NAME || 'my_db',  // Use environment variable for staging
+      user: process.env.STAGING_DB_USER || 'username',
+      password: process.env.STAGING_DB_PASSWORD || 'password',
     },
     pool: {
       min: 2,
@@ -33,9 +33,7 @@ module.exports = {
   production: {
     client: 'postgresql',
     connection: {
-      database: 'my_db',
-      user: 'username',
-      password: 'password',
+      database: process.env.DATABASE_URL, // Use Render's DATABASE_URL for production
     },
     pool: {
       min: 2,
