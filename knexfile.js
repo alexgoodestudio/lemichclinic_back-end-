@@ -6,12 +6,12 @@ module.exports = {
   development: {
     client: 'sqlite3',
     connection: {
-      filename: './dev.sqlite3',  // Your database file
+      filename: './dev.sqlite3', 
     },
     migrations: {
-      directory: './api/migrations',  // Path to the migrations folder
+      directory: './api/migrations',  
     },
-    useNullAsDefault: true,  // This is necessary for SQLite
+    useNullAsDefault: true,  
   },
 
   staging: {

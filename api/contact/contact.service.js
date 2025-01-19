@@ -36,25 +36,15 @@ function update(contact_id, updatedContact) {
 }
 
 function destroy(contact_id) {
-  return knex("contacts").where({ contact_id }).del();
+  return knex("contacts").where({ id: contact_id }).del();
 }
-
-// function destroy(contact_id) {
-//   return knex("contacts")
-//     .where({ id: contact_id })  
-//     .del()
-//     .catch((err) => {
-//       console.error("Error in destroy query:", err);
-//       throw err;
-//     });
-// }
 
 
 
 module.exports = {
   list,
   read,
-  readByEmail,  // Add the method to check by email
+  readByEmail, 
   create,
   update,
   destroy,
