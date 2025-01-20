@@ -1,18 +1,20 @@
 const express = require("express");
 const cors = require("cors");
-const path = require("path"); // Add path to serve the build folder
-const contactRouter = require("./api/contact/contact.router");  
+const path = require("path");
+const contactRouter = require("./api/contact/contact.router");
 const app = express();
 
-app.use(cors());  
+app.use(cors());
 app.use(express.json());
 
-app.use(express.static(path.join(__dirname, "build")));
+// Serve static files from the build folder in the 'front-end' directory
+app.use(express.static(path.join(__dirname, "../front-end/build")));  // Adjusted path
 
 app.use("/contacts", contactRouter);
 
+// Serve React app for all other routes
 app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "build", "index.html"));
+  res.sendFile(path.join(__dirname, "../front-end/build", "index.html")); // Adjusted path
 });
 
 app.use((req, res, next) => {
