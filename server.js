@@ -7,7 +7,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-// Serve static files from the build folder in the 'front-end' directory
+// Serve static files from the 'front-end/build' directory
 app.use(express.static(path.join(__dirname, "../front-end/build")));  // Adjusted path
 
 app.use("/contacts", contactRouter);
