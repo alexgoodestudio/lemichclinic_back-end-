@@ -1,6 +1,6 @@
+require('dotenv').config(); // Make sure this line is at the top
 const express = require("express");
 const cors = require("cors");
-require('dotenv').config();
 const knex = require('knex')(require('./knexfile')[process.env.NODE_ENV || 'development']); // Use knexfile configuration
 const contactRouter = require("./api/contact/contact.router");
 
@@ -38,4 +38,4 @@ app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });
 
-console.log(process.env.DATABASE_URL,"!!!!!!!!!"); 
+console.log('DATABASE_URL from .env:', process.env.DATABASE_URL); // Debugging line
