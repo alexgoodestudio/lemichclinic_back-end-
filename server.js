@@ -1,17 +1,9 @@
 const express = require("express");
 const cors = require("cors");
 require('dotenv').config();
-const knex = require('knex')({
-  client: 'postgresql',
-  connection: {
-    connectionString: process.env.DATABASE_URL,
-    ssl: {
-      rejectUnauthorized: false,  // Disable SSL certificate validation
-    },
-  },
-});
-
+const knex = require('knex')(require('./knexfile')[process.env.NODE_ENV || 'development']); // Use knexfile configuration
 const contactRouter = require("./api/contact/contact.router");
+
 const app = express();
 
 app.use(cors());
