@@ -8,13 +8,13 @@ app.use(cors());
 app.use(express.json());
 
 // Serve static files from the correct path
-app.use(express.static(path.join(__dirname, "lemich/front-end/build")));
+app.use(express.static(path.join(__dirname, "front-end/build")));
 
 app.use("/contacts", contactRouter);
 
 // Serve the frontend's index.html for any unrecognized route
 app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "lemich/front-end/build/index.html"));
+  res.sendFile(path.join(__dirname, "front-end/build/index.html"));
 });
 
 // Handle 404 errors for undefined routes
