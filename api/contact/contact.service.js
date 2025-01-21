@@ -1,7 +1,22 @@
 const knex = require("../db/connection");
 
+// function list() {
+//   return knex("contacts").select("*").orderBy("created_at", "desc");
+// }
+
 function list() {
-  return knex("contacts").select("*").orderBy("created_at", "desc");
+  console.log("Executing query to fetch contacts...");
+  return knex("contacts")
+    .select("*")
+    .orderBy("created_at", "desc")
+    .then((data) => {
+      console.log("Fetched contacts from database:", data);
+      return data;
+    })
+    .catch((err) => {
+      console.error("Error in knex query:", err);
+      throw err;
+    });
 }
 
 function read(contact_id) {

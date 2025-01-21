@@ -9,6 +9,7 @@ async function list(req, res) {
     const data = await service.list();
     res.status(200).json({ data });
   } catch (error) {
+    console.error("Error in list contacts:", error);  // Detailed log
     res.status(500).json({ error: "Failed to retrieve contacts" });
   }
 }
