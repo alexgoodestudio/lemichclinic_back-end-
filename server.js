@@ -14,7 +14,7 @@ app.get("*", (req, res) => {
   res.redirect("https://lemichclinic-front-end.onrender.com");
 });
 
-const port = process.env.PORT || 5001;
+const port = process.env.PORT || 10000;
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });
