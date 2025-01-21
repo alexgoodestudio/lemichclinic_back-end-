@@ -6,20 +6,21 @@ module.exports = {
   development: {
     client: 'sqlite3',
     connection: {
-      filename: './dev.sqlite3', 
+      filename: './dev.sqlite3',
     },
     migrations: {
-      directory: './api/migrations',  
+      directory: './api/migrations',
     },
-    useNullAsDefault: true,  
+    useNullAsDefault: true,
   },
 
   staging: {
     client: 'postgresql',
     connection: {
-      database: process.env.STAGING_DB_NAME || 'my_db',  // Use environment variable for staging
-      user: process.env.STAGING_DB_USER || 'username',
-      password: process.env.STAGING_DB_PASSWORD || 'password',
+      host: '127.0.0.1', // localhost for staging
+      user: 'lemich_clinic_user', // Database username
+      password: 'G9pnxcYtnNPyELtMQ8SjBZB0wvfieUVk', // Database password
+      database: 'lemich_clinic', // Database name
     },
     pool: {
       min: 2,
@@ -33,7 +34,10 @@ module.exports = {
   production: {
     client: 'postgresql',
     connection: {
-      database: process.env.DATABASE_URL, // Use Render's DATABASE_URL for production
+      connectionString: process.env.DATABASE_URL, // Get the DATABASE_URL from environment variable (Render)
+      ssl: {
+        rejectUnauthorized: false, // Disable SSL validation for certain environments (Render requires SSL)
+      },
     },
     pool: {
       min: 2,
