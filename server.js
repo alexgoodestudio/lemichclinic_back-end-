@@ -7,14 +7,14 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-// Serve static files from the correct path
-app.use(express.static(path.join(__dirname, "front-end/build")));
+// Correct path to serve static files
+app.use(express.static(path.join(__dirname, "../front-end/build")));
 
 app.use("/contacts", contactRouter);
 
-// Serve the frontend's index.html for any unrecognized route
+// Serve the frontend's index.html for unrecognized routes
 app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "front-end/build/index.html"));
+  res.sendFile(path.join(__dirname, "../front-end/build/index.html"));
 });
 
 // Handle 404 errors for undefined routes
