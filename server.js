@@ -9,9 +9,15 @@ app.use(express.json());
 // API routes
 app.use("/contacts", contactRouter);
 
-// Redirect all other routes to the frontend URL
-app.get("*", (req, res) => {
-  res.redirect("https://lemichclinic-front-end.onrender.com");
+// Handle undefined routes (404)
+app.use((req, res) => {
+  res.status(404).json({ message: "Route not found" });
+});
+
+// General error handler
+app.use((err, req, res, next) => {
+  console.error(err);
+  res.status(500).json({ message: "Internal Server Error", error: err.message });
 });
 
 const port = process.env.PORT || 10000;
