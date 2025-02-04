@@ -1,8 +1,7 @@
-require("dotenv").config();
+require('dotenv').config(); // Make sure this line is at the top
 const express = require("express");
 const cors = require("cors");
-const path = require("path");
-const knex = require("knex")(require("./knexfile")[process.env.NODE_ENV || "development"]);
+const knex = require('knex')(require('./knexfile')[process.env.NODE_ENV || 'development']); // Use knexfile configuration
 const contactRouter = require("./api/contact/contact.router");
 
 const app = express();
@@ -11,7 +10,7 @@ app.use(cors());
 app.use(express.json());
 
 // Test database connection
-knex.raw("SELECT 1")
+knex.raw('SELECT 1')
   .then(() => {
     console.log("Database connection successful");
   })
@@ -19,18 +18,10 @@ knex.raw("SELECT 1")
     console.error("Database connection failed:", err);
   });
 
-// Serve the React build folder
-app.use(express.static(path.join(__dirname, "build")));
-
 // API routes
 app.use("/contacts", contactRouter);
 
-// Catch-all route to serve React frontend
-app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "build", "index.html"));
-});
-
-// Handle undefined API routes
+// Handle undefined routes (404)
 app.use((req, res) => {
   res.status(404).json({ message: "Route not found" });
 });
@@ -47,4 +38,4 @@ app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });
 
-console.log("DATABASE_URL from .env:", process.env.DATABASE_URL);
+console.log('DATABASE_URL from .env:', process.env.DATABASE_URL); // Debugging line
