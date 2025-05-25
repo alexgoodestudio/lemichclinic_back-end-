@@ -1,4 +1,4 @@
-require('dotenv').config();  // Add this line to load environment variables
+require('dotenv').config();
 console.log(process.env.DATABASE_URL, "knex file");
 
 /**
@@ -20,10 +20,10 @@ module.exports = {
   staging: {
     client: 'postgresql',
     connection: {
-      host: '127.0.0.1', // localhost for staging
-      user: 'lemich_clinic_user', // Database username
-      password: 'G9pnxcYtnNPyELtMQ8SjBZB0wvfieUVk', // Database password
-      database: 'lemich_clinic', // Database name
+      host: '127.0.0.1',
+      user: 'lemich_clinic_user',
+      password: 'G9pnxcYtnNPyELtMQ8SjBZB0wvfieUVk',
+      database: 'lemich_clinic',
     },
     pool: {
       min: 2,
@@ -34,18 +34,21 @@ module.exports = {
     },
   },
 
-  production: {
-    client: 'postgresql',
-    connection: process.env.DATABASE_URL, // Use DATABASE_URL from the .env file
-    ssl: { rejectUnauthorized: false }, // Use this SSL setting to allow self-signed certificates
-    pool: {
-      min: 2,
-      max: 10,
-    },
-    migrations: {
-      tableName: 'knex_migrations',
-      directory: './api/migrations', // Correct path to migrations
-    },
-  }
-
+production: {
+  client: 'pg',
+  connection: {
+    connectionString: process.env.DATABASE_URL,
+    ssl: {
+      rejectUnauthorized: false
+    }
+  },
+  pool: {
+    min: 2,
+    max: 10,
+  },
+  migrations: {
+    tableName: 'knex_migrations',
+    directory: './api/migrations',
+  },
+}
 };
