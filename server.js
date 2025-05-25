@@ -37,5 +37,5 @@ const port = process.env.PORT || 5001;
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });
-
+console.log('NODE_ENV:', process.env.NODE_ENV);
 console.log('DATABASE_URL from .env:', process.env.DATABASE_URL); // Debugging line
