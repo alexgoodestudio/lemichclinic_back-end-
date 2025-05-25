@@ -4,11 +4,9 @@
   "description": "",
   "main": "knexfile.js",
   "scripts": {
-    
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js",
-     "test-pg": "node test-pg.js",
-    "start:dev": "nodemon server.js"
+  "start": "npm run test-pg && node server.js",
+  "test-pg": "node test-pg.js",
+  "start:dev": "nodemon server.js"
   },
   "keywords": [],
   "author": "",
