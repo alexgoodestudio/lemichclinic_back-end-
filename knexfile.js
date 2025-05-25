@@ -34,18 +34,20 @@ module.exports = {
     },
   },
 
-  production: {
-    client: 'postgresql',
-    connection: process.env.DATABASE_URL, // Use DATABASE_URL from the .env file
-    ssl: { rejectUnauthorized: false }, // Use this SSL setting to allow self-signed certificates
-    pool: {
-      min: 2,
-      max: 10,
-    },
-    migrations: {
-      tableName: 'knex_migrations',
-      directory: './api/migrations', // Correct path to migrations
-    },
-  }
+production: {
+  client: 'postgresql',
+  connection: {
+    connectionString: process.env.DATABASE_URL,
+    ssl: { rejectUnauthorized: false }
+  },
+  pool: {
+    min: 2,
+    max: 10,
+  },
+  migrations: {
+    tableName: 'knex_migrations',
+    directory: './api/migrations',
+  },
+}
 
 };
